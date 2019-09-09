@@ -29,7 +29,10 @@ namespace MVCL
             }
 
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            // app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes => {
+                routes.MapRoute("default", "Goreno/{controller=Home}/{action=Index}/{id?}");
+                });
         }
     }
 }
