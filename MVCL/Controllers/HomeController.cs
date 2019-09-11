@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCL.Models;
 using MVCL.Repository;
 using MVCL.ViewModel;
 using System;
@@ -11,7 +12,7 @@ namespace MVCL.Controllers
     public class HomeController : Controller
     {
         readonly IEmployeeRepository _employeeRepository;
-        
+
         public HomeController(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
@@ -28,6 +29,22 @@ namespace MVCL.Controllers
             d.PageTitle = "Employee Data";
             d.Employee = _employeeRepository.GetEmployee(Id.Value);
             return View(d);
+        }
+
+        public ViewResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                employee = _employeeRepository.Add(employee);
+            }
+
+           return View();
         }
     }
 }
