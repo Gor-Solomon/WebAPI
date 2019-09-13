@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MVCL.DAL.DataAccess;
+using MVCL.DAL.Repository.Base;
 using MVCL.Models;
 
-namespace MVCL.Repository
+namespace MVCL.DAL.Repository
 {
-    public class EmployeeRpository : IEmployeeRepository
+    public class MockEmployeeRpository : BaseRepository<Employee, AppDbContext>, IEmployeeRepository
     {
         List<Employee> _employees;
 
-        public EmployeeRpository()
+        public MockEmployeeRpository(AppDbContext appDbContext) : base(appDbContext)
         {
             _employees = new List<Employee>()
             {
@@ -20,30 +22,20 @@ namespace MVCL.Repository
             };
         }
 
-        public Employee Add(Employee employee)
+        public override async Task<Employee> Add(Employee entity)
         {
             if (_employees.Count > 0)
             {
-                employee.Id = _employees.Last().Id + 1;
+                entity.Id = _employees.Last().Id + 1;
             }
             else
             {
-                employee.Id = 1;
+                entity.Id = 1;
             }
-            
-            _employees.Add(employee);
 
-            return employee;
-        }
+            _employees.Add(entity);
 
-        public IEnumerable<Employee> GetAllEmployees()
-        {
-            return _employees.ToList();
-        }
-
-        public Employee GetEmployee(int Id)
-        {
-            return _employees.FirstOrDefault(x => x.Id == Id);
+            return entity;
         }
     }
 }

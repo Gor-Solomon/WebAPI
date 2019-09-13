@@ -11,8 +11,9 @@
                <h1>@Model.Employee.Name</h1>
            </div>
 
+           @{var imageName = Model.Employee.PhotoPath ?? "person.png"; }
            <div class="card-body text-center">
-               <img class="card-img-top" src="~/images/person.png" />
+               <img class="card-img-top imageThumbnail" src="~/images/@imageName" />
                <h4>Employee ID: @Model.Employee.Id</h4>
                <h4>Email: @Model.Employee.Email</h4>
                <h4>Department: @Model.Employee.Department</h4>

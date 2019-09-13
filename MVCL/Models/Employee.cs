@@ -11,10 +11,13 @@ namespace MVCL.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Please provide a value for Name field")]
         [Display(Name = "Office Email")]
+        [MaxLength(50)]
         public string Name{ get; set; }
 
         [Required(ErrorMessage = "Please provide a value for Email field")]
         public string Email { get; set; }
-        public DepartmentEnumType Department { get; set; }
+        [Required()]
+        public DepartmentEnumType? Department { get; set; }
+        public string PhotoPath { get; set; }
     }
 }
