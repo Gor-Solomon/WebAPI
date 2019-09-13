@@ -11,7 +11,7 @@ namespace MVCL.DAL.Repository.Base
         Task<TEntity> GetById(int Id);
         Task<TEntity> Add(TEntity entity);
         Task<IEnumerable<TEntity>> GetAll();
-        void Edit(TEntity entity);
+        Task<TEntity> Edit(TEntity entity);
         void RemoveById(int Id);
     }
 }

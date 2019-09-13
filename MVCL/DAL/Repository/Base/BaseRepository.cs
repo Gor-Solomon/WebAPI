@@ -27,13 +27,12 @@ namespace MVCL.DAL.Repository.Base
             return result.Entity;
         }
 
-        public virtual async void Edit(TEntity entity)
+        public virtual async Task<TEntity> Edit(TEntity entity)
         {
-            if (entity == null)
-                throw new ArgumentException(nameof(entity));
-
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            var employee = _dbContext.Set<TEntity>().Attach(entity);
+            employee.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetAll()

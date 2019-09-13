@@ -10,6 +10,19 @@ namespace MVCL.ViewModel
 {
     public class EmployeeCreateViewModel : Employee
     {
+        public EmployeeCreateViewModel()
+        {
+
+        }
+
+        public EmployeeCreateViewModel(Employee employee)
+        {
+            base.Id = employee.Id;
+            base.Name = employee.Name;
+            base.Department = employee.Department;
+            base.Email = employee.Email;
+            base.PhotoPath = employee.PhotoPath;
+        }
         public IFormFile Photo { get; set; }
     }
 }
