@@ -10,10 +10,10 @@ namespace MVCL.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please provide a value for Name field")]
-        [Display(Name = "Office Email")]
         [MaxLength(50)]
         public string Name{ get; set; }
 
+        [Display(Name = "Office Email")]
         [Required(ErrorMessage = "Please provide a value for Email field")]
         public string Email { get; set; }
         [Required()]
