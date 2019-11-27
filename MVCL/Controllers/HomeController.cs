@@ -36,11 +36,13 @@ namespace MVCL.Controllers
             var d = new HomeDetailsViewModel();
             d.PageTitle = "Employee Data";
             d.Employee = await _employeeRepository.GetById(Id.Value);
+
             if (d.Employee is null)
             {
                 Response.StatusCode = 404;
                 return View("EmployeeNotFound", Id);
             }
+
             return View(d);
         }
 
